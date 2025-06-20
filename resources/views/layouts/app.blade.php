@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('forms.index') }}">Form List</a>
+                            <a class="nav-link fw-bold" href="{{ route('forms.index') }}">Form List</a>
                         </li>
                     </ul>
 
