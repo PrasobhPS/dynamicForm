@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Form;
+use App\Jobs\NotifyFormCreated;
 
 class PublicFormController extends Controller
 {
@@ -21,6 +22,8 @@ class PublicFormController extends Controller
             ->filter(function ($value, $key) {
                 return str_starts_with($key, 'field_');
             });
+
+        NotifyFormCreated::dispatch($form, $responses);
         \Log::info("Form '{$form->form_title}' submitted.", $responses->toArray());
 
         // Here you would typically save the responses to a database or process them as needed.

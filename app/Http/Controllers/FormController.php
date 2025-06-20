@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FormField;
 use App\Models\Form;
+use App\Jobs\NotifyFormCreated;
 
 class FormController extends Controller
 {
@@ -74,6 +75,7 @@ class FormController extends Controller
             $formField->save();
         }
 
+        NotifyFormCreated::dispatch($form, $request->all());
         // Redirect to the forms index with a success message
         return redirect()->route('forms.index')->with('success', 'Form created successfully.');
     }
