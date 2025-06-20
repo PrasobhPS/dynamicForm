@@ -16,6 +16,8 @@
 
     <!-- App CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body style="font-family: 'Nunito', sans-serif;">
@@ -32,7 +34,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
-                        {{-- Left Nav Items if needed --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('forms.index') }}">Form List</a>
+                        </li>
                     </ul>
 
                     <ul class="navbar-nav ms-auto">
@@ -81,6 +85,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    @yield('scripts')
 </body>
 
 </html>

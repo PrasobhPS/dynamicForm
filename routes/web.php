@@ -20,3 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('forms', App\Http\Controllers\FormController::class);
+    Route::resource('fields', App\Http\Controllers\FieldController::class);
+    Route::get('/forms/{form}/fields/create', [App\Http\Controllers\FieldController::class, 'create'])->name('fields.create');
+    Route::post('/forms/{form}/fields', [App\Http\Controllers\FieldController::class, 'store'])->name('fields.store');
+});

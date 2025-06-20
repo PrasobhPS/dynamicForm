@@ -14,4 +14,12 @@ class Form extends Model
         'form_title',
         'form_description',
     ];
+
+    /**
+     * Get the fields associated with the form.
+     */
+    public function fields()
+    {
+        return $this->hasMany(FormField::class, 'form_id');
+    }
 }

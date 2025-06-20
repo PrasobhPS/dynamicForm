@@ -17,4 +17,12 @@ class FormField extends Model
         'type',
         'options',
     ];
+
+    /**
+     * Get the form that owns the field.
+     */
+    public function form()
+    {
+        return $this->belongsTo(Form::class, 'form_id');
+    }
 }
