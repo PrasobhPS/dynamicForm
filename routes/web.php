@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicFormController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +22,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('forms', App\Http\Controllers\FormController::class);
-    Route::resource('fields', App\Http\Controllers\FieldController::class);
-    Route::get('/forms/{form}/fields/create', [App\Http\Controllers\FieldController::class, 'create'])->name('fields.create');
-    Route::post('/forms/{form}/fields', [App\Http\Controllers\FieldController::class, 'store'])->name('fields.store');
+    Route::resource('forms', FormController::class);
 });
+
+Route::get('/form/{id}', [PublicFormController::class, 'show'])->name('form.public.show');
+Route::post('/form/{id}', [PublicFormController::class, 'store'])->name('form.public.store');

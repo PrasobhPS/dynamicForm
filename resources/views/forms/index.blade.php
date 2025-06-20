@@ -28,7 +28,7 @@
                             <td>{{ $form->form_description }}</td>
                             <td>{{ $form->created_at->format('d M Y, h:i A') }}</td>
                             <td>
-                                <a href="{{ route('forms.show', $form->id) }}" target="_blank">Copy</a>
+                                <a href="#" class="copy-link" data-url="{{ route('form.public.show', $form->id) }}">Copy</a>
                             </td>
                             <td>
                                 <a href="{{ route('forms.edit', $form->id) }}" class="btn btn-sm btn-warning">Edit</a>
@@ -51,4 +51,23 @@
             <a href="{{ route('forms.create') }}" class="btn btn-primary">+ Create New Form</a>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.copy-link').on('click', function (e) {
+                e.preventDefault();
+                const url = $(this).data('url');
+
+                // Create a temporary input, copy the text, then remove it
+                const tempInput = $('<input>');
+                $('body').append(tempInput);
+                tempInput.val(url).select();
+                document.execCommand('copy');
+                tempInput.remove();
+
+                alert('URL copied to clipboard!');
+            });
+        });
+    </script>
 @endsection
