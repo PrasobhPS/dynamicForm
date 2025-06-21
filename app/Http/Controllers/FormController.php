@@ -59,13 +59,11 @@ class FormController extends Controller
             }
         }
 
-        // Create a new form instance and save it to the database
         $form = new Form();
         $form->form_title = $request->input('form_title');
         $form->form_description = $request->input('form_description');
         $form->save();
 
-        // Loop through the fields and create each one
         foreach ($request->fields as $field) {
             $formField = new FormField();
             $formField->form_id = $form->id;
@@ -76,7 +74,6 @@ class FormController extends Controller
         }
 
         NotifyFormCreated::dispatch($form, $request->all());
-        // Redirect to the forms index with a success message
         return redirect()->route('forms.index')->with('success', 'Form created successfully.');
     }
 
@@ -153,7 +150,6 @@ class FormController extends Controller
             ]);
         }
 
-        // Redirect to the forms index with a success message
         return redirect()->route('forms.index')->with('success', 'Form updated successfully.');
     }
 
@@ -172,7 +168,6 @@ class FormController extends Controller
         $form->fields()->delete();
         $form->delete();
 
-        // Redirect to the forms index with a success message
         return redirect()->route('forms.index')->with('success', 'Form deleted successfully.');
     }
 }

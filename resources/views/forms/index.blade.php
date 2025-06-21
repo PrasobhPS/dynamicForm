@@ -59,7 +59,6 @@
                 e.preventDefault();
                 const url = $(this).data('url');
 
-                // Create a temporary input, copy the text, then remove it
                 const tempInput = $('<input>');
                 $('body').append(tempInput);
                 tempInput.val(url).select();
