@@ -121,7 +121,6 @@
             handleFieldEvents($newField);
         });
 
-        // Apply event handlers to existing fields
         $('#fields-wrapper .field-row').each(function () {
             handleFieldEvents($(this));
         });
